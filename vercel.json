@@ -15,6 +15,5 @@
         "dest": "src/main.ts",
         "methods": ["GET", "POST", "PUT", "PATCH", "HEAD", "DELETE", "OPTIONS"]
       }
-    ],
-    "buildCommand": "npm install && npx prisma generate && npm run build"
+    ]
 }
