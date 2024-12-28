@@ -1,7 +1,7 @@
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { QueryProps } from '../pipes/validate-query.pipe';
 export declare class ProductsController {
     private readonly productsService;
     constructor(productsService: ProductsService);

@@ -1,6 +1,6 @@
 import { InventoryService } from './inventory.service';
 import { CreateMovementDto } from './dto/create-movement.dto';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { QueryProps } from '../pipes/validate-query.pipe';
 export declare class InventoryController {
     private readonly inventoryService;
     constructor(inventoryService: InventoryService);

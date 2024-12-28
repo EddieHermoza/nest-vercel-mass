@@ -1,7 +1,7 @@
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { PrismaService } from '../prisma/prisma.service';
+import { QueryProps } from '../pipes/validate-query.pipe';
 import { Prisma } from '@prisma/client';
 export declare class ProductsService {
     private readonly db;

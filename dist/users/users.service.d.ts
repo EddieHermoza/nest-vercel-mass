@@ -1,8 +1,8 @@
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { UserRole } from '@prisma/client';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { QueryProps } from '../pipes/validate-query.pipe';
 export declare class UsersService {
     private readonly db;
     constructor(db: PrismaService);

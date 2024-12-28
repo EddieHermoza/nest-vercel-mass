@@ -1,7 +1,7 @@
 import { ProvidersService } from './providers.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { QueryProps } from '../pipes/validate-query.pipe';
 export declare class ProvidersController {
     private readonly providersService;
     constructor(providersService: ProvidersService);

@@ -1,7 +1,7 @@
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { QueryProps } from '../pipes/validate-query.pipe';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
