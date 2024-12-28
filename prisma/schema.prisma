@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AuditLog {
+  id       Int      @id @default(autoincrement())
+  userId   Int
+  action   Action
+  entity   Entity
+  entityId Int
+  created  DateTime @default(now())
+  details  Json?
+  User     User     @relation(fields: [userId], references: [id])
+}
+
+model Movement {
+  id          Int          @id @default(autoincrement())
+  created     DateTime     @default(now())
+  type        MovementType
+  productId   Int
+  quantity    Int
+  description String
+  Product     Product      @relation(fields: [productId], references: [id])
+}
+
+model Product {
+  id             Int            @id @default(autoincrement())
+  created        DateTime       @default(now())
+  updated        DateTime       @updatedAt
+  name           String         @db.VarChar(100)
+  description    String         @db.VarChar(100)
+  category       String         @db.VarChar(100)
+  img            String         @default("PENDIENTE")
+  stock          Int            @default(0)
+  price          Decimal        @db.Decimal(10, 2)
+  discount       Decimal        @db.Decimal(10, 2)
+  orderLimit     Int
+  isActive       Boolean        @default(false)
+  isArchived     Boolean        @default(false)
+  lastStockEntry DateTime?
+  Movement       Movement[]
+  SaleItem       SaleItem[]
+  PurchaseItem   PurchaseItem[]
+}
+
+model Provider {
+  id         Int        @id @default(autoincrement())
+  created    DateTime   @default(now())
+  updated    DateTime   @updatedAt
+  ruc        String     @unique @db.VarChar(11)
+  name       String     @db.VarChar(100)
+  legal      String     @db.VarChar(100)
+  web        String     @db.VarChar(100)
+  email      String     @db.VarChar(100)
+  number     String     @db.VarChar(9)
+  isActive   Boolean    @default(false)
+  isArchived Boolean    @default(false)
+  Purchase   Purchase[]
+}
+
+model Purchase {
+  id            Int            @id @default(autoincrement())
+  created       DateTime       @default(now())
+  userId        Int
+  providerId    Int
+  totalPrice    Decimal        @db.Decimal(10, 2)
+  receiptType   ReceiptType
+  receiptNumber String
+  receiptDate   DateTime
+  User          User           @relation(fields: [userId], references: [id])
+  Provider      Provider       @relation(fields: [providerId], references: [id])
+  PurchaseItem  PurchaseItem[]
+}
+
+model PurchaseItem {
+  id          Int      @id @default(autoincrement())
+  purchaseId  Int
+  productId   Int
+  productName String
+  quantity    Int
+  price       Decimal  @db.Decimal(10, 2)
+  Product     Product  @relation(fields: [productId], references: [id])
+  Purchase    Purchase @relation(fields: [purchaseId], references: [id])
+}
+
+model Sale {
+  id            Int           @id @default(autoincrement())
+  created       DateTime      @default(now())
+  transaction   String
+  userId        Int
+  totalAmount   Decimal       @db.Decimal(10, 2)
+  totalDiscount Decimal       @db.Decimal(10, 2)
+  totalPayment  Decimal       @db.Decimal(10, 2)
+  paymentMethod PaymentMethod
+  status        SaleStatus    @default(PENDIENTE)
+  User          User          @relation(fields: [userId], references: [id])
+  SaleItem      SaleItem[]
+}
+
+model SaleItem {
+  id          Int     @id @default(autoincrement())
+  saleId      Int
+  productId   Int
+  productName String
+  quantity    Int
+  price       Decimal @db.Decimal(10, 2)
+  discount    Decimal @db.Decimal(10, 2)
+  Product     Product @relation(fields: [productId], references: [id])
+  Sale        Sale    @relation(fields: [saleId], references: [id])
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  created    DateTime   @default(now())
+  updated    DateTime   @updatedAt
+  dni        String     @db.VarChar(8)
+  name       String     @db.VarChar(100)
+  lastName   String     @db.VarChar(100)
+  email      String     @unique @db.VarChar(100)
+  number     String     @db.VarChar(9)
+  password   String
+  role       UserRole
+  isActive   Boolean    @default(false)
+  isArchived Boolean    @default(false)
+  AuditLog   AuditLog[]
+  Sale       Sale[]
+  Purchase   Purchase[]
+}
+
+enum UserRole {
+  ADMINISTRADOR 
+  CLIENTE
+  VENDEDOR
+}
+
+enum MovementType {
+  ENTRADA
+  SALIDA
+}
+
+enum Action {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+enum Entity {
+  Purchase
+  Provider
+  User
+  Product
+  Movement
+  Sale
+}
+
+enum ReceiptType {
+  BOLETA
+  FACTURA
+}
+
+enum PaymentMethod {
+  PAYPAL
+  EFECTIVO
+  YAPE
+  TARJETA
+}
+
+enum SaleStatus {
+  PENDIENTE
+  COMPLETADO
+  CANCELADO
+}
