@@ -3,9 +3,9 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcryptjs';
-import { formatDate } from 'src/lib/utils';
-import { ValidateId } from 'src/pipes/validate-id.pipe';
-import { QueryProps, ValidateQueryPipe } from 'src/pipes/validate-query.pipe';
+import { formatDate } from '../lib/utils';
+import { ValidateId } from '../pipes/validate-id.pipe';
+import { QueryProps, ValidateQueryPipe } from '../pipes/validate-query.pipe';
 
 
 

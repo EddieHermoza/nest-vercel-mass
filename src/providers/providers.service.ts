@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { PrismaService } from '../prisma/prisma.service';
+import { QueryProps } from '../pipes/validate-query.pipe';
 import { Prisma } from '@prisma/client';
 
 @Injectable()

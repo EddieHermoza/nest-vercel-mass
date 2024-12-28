@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete,Query } from '@nestjs
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { QueryProps, ValidateQueryPipe } from 'src/pipes/validate-query.pipe';
-import { ValidateId } from 'src/pipes/validate-id.pipe';
+import { QueryProps, ValidateQueryPipe } from '../pipes/validate-query.pipe';
+import { ValidateId } from '../pipes/validate-id.pipe';
 
 @Controller('products')
 export class ProductsController {

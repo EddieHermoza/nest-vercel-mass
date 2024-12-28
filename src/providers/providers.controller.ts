@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { ProvidersService } from './providers.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
-import { ValidateQueryPipe,QueryProps } from 'src/pipes/validate-query.pipe';
-import { ValidateId } from 'src/pipes/validate-id.pipe';
+import { ValidateQueryPipe,QueryProps } from '../pipes/validate-query.pipe';
+import { ValidateId } from '../pipes/validate-id.pipe';
 
 @Controller('providers')
 export class ProvidersController {

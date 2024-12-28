@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { InventoryService } from './inventory.service';
 import { CreateMovementDto } from './dto/create-movement.dto';
-import { QueryProps, ValidateQueryPipe } from 'src/pipes/validate-query.pipe';
-import { ValidateId } from 'src/pipes/validate-id.pipe';
+import { QueryProps, ValidateQueryPipe } from '../pipes/validate-query.pipe';
+import { ValidateId } from '../pipes/validate-id.pipe';
 
 @Controller('inventory')
 export class InventoryController {

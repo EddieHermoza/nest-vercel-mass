@@ -1,8 +1,8 @@
 import { Injectable,BadRequestException,NotFoundException } from '@nestjs/common';
 import { CreateMovementDto } from './dto/create-movement.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { ProductsService } from 'src/products/products.service';
-import { QueryProps } from 'src/pipes/validate-query.pipe';
+import { PrismaService } from '../prisma/prisma.service';
+import { ProductsService } from '../products/products.service';
+import { QueryProps } from '../pipes/validate-query.pipe';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
