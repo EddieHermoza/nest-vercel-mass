@@ -16,5 +16,5 @@
         "methods": ["GET", "POST", "PUT", "PATCH", "HEAD", "DELETE", "OPTIONS"]
       }
     ],
-    "buildCommand": "npm install && npm run prisma:generate && npm run build"
+    "buildCommand": "npm install && npx prisma generate && npm run build"
 }
